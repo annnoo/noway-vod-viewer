@@ -26,7 +26,7 @@
 			<div class="lg:sticky lg:top-4 lg:h-fit">
 				<TwitchChannelEmbed 
 					video={vodId} 
-
+					id={vodId}
 					width="100%" 
 					height="400px" 
 				/>

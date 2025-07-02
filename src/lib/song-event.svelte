@@ -36,17 +36,6 @@
 			</a>
 		{/if}
 		
-		{#if event.lastfmUrl}
-			<a 
-				href={event.lastfmUrl} 
-				target="_blank" 
-				rel="noopener noreferrer"
-				class="text-xs bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700"
-			>
-				Last.fm
-			</a>
-		{/if}
-		
 		<button 
 			onclick={jumpToTimestamp}
 			class="text-xs text-green-600 hover:text-green-800 hover:underline"

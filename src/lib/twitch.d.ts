@@ -13,5 +13,6 @@ declare namespace Twitch {
   class Player {
     constructor(id: string, options: PlayerOptions);
     seek(seconds: number): void;
+    getCurrentTime(): number;
   }
 }

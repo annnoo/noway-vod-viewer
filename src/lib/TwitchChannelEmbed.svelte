@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { twitchEventBus } from './store';
+	import { twitchEventBus, currentTimeStore } from './store';
+	import { onDestroy } from 'svelte';
+	
 	let {
 		channel,
 		width = '100%',
@@ -9,29 +11,57 @@
 		id,
 		video
 	}: {
-		channel: string;
+		channel?: string;
 		width?: string | number;
 		height?: string | number;
 		autoplay?: boolean;
 		muted?: boolean;
-		id: string;
+		id?: string;
 		video?: string;
 	} = $props();
 
 	let player: Twitch.Player;
+	let timeInterval: number;
 
 	$effect(() => {
-		player = new Twitch.Player(`twitch-embed-${id}`, {
+		const playerId = id || 'default';
+		player = new Twitch.Player(`twitch-embed-${playerId}`, {
 			video,
 			width,
-
 			height,
 			autoplay,
 			muted,
-
 			parent: []
 		});
+
+		// Start tracking current time every 4 seconds
+		timeInterval = setInterval(() => {
+			if (player && typeof player.getCurrentTime === 'function') {
+				try {
+					const currentTime = player.getCurrentTime();
+					console.log('Current player time:', currentTime);
+					currentTimeStore.update(currentTime);
+				} catch (error) {
+					console.warn('Could not get current time from Twitch player:', error);
+				}
+			} else {
+				console.warn('Player not ready or getCurrentTime not available');
+			}
+		}, 4000);
+
+		return () => {
+			if (timeInterval) {
+				clearInterval(timeInterval);
+			}
+		};
 	});
+
+	onDestroy(() => {
+		if (timeInterval) {
+			clearInterval(timeInterval);
+		}
+	});
+
 	twitchEventBus.subscribe((event) => {
 		if (event && player) {
 			(player as any).seek(event);
@@ -39,7 +69,7 @@
 	});
 </script>
 
-<div id={`twitch-embed-${id}`} class="twitch-embed"></div>
+<div id={`twitch-embed-${id || 'default'}`} class="twitch-embed"></div>
 
 <style>
 	.twitch-embed {
