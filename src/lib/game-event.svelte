@@ -32,10 +32,5 @@
 		{/if}
 	</div>
 	
-	<button 
-		onclick={jumpToTimestamp}
-		class="mt-2 text-xs text-blue-600 hover:text-blue-800 hover:underline"
-	>
-		Jump to timestamp
-	</button>
+
 </div>

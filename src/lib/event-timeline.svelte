@@ -86,6 +86,9 @@
 			scrollToEvent(eventId);
 		}
 	});
+    function seekToTs(event: VodEvent) {
+        twitchEventBus.emit(event.offsetSeconds);
+    }
 </script>
 
 <div class="h-full flex flex-col">
@@ -120,12 +123,12 @@
 					class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow scroll-mt-4"
 				>
 					<div class="flex items-start justify-between mb-2">
-						<span class="text-sm font-medium text-blue-600">
+					<span class="text-sm font-medium text-blue-600 hover:underline italic hover:cursor-pointer" onclick={() => seekToTs(event.offsetSeconds)}>
 							{formatTimestamp(event.offsetSeconds)}
 						</span>
 						<span class="text-xs text-gray-500 capitalize">
 							{event.type.replace('_', ' ').toLowerCase()}
-						</span>
+						</span> 
 					</div>
 					
 					{#if event.type === VodEventType.GAME}

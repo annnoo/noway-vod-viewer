@@ -18,10 +18,4 @@
 		{event.championName} killed by {event.killerChampionName}
 	</p>
 	
-	<button 
-		onclick={jumpToTimestamp}
-		class="mt-2 text-xs text-gray-600 hover:text-gray-800 hover:underline"
-	>
-		Jump to timestamp
-	</button>
 </div>

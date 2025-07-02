@@ -22,7 +22,7 @@
 		<p class="text-xs text-green-700 mb-2">Album: {event.album}</p>
 	{/if}
 	
-	<div class="flex gap-2 mt-2">
+	<div class="flex flex-col gap-2 mt-2">
 		{#if event.spotifyUrl}
         <Spotify
         spotifyLink={spotifyUrlForEmbed} ></Spotify>
@@ -30,17 +30,12 @@
 				href={event.spotifyUrl} 
 				target="_blank" 
 				rel="noopener noreferrer"
-				class="text-xs bg-green-600 text-white px-2 py-1 rounded hover:bg-green-700"
+				class="text-xs bg-green-600 h-20 self-center text-center  text-white px-2 py-1 rounded hover:bg-green-700"
 			>
-				Spotify
+				Link To Spotify
 			</a>
 		{/if}
 		
-		<button 
-			onclick={jumpToTimestamp}
-			class="text-xs text-green-600 hover:text-green-800 hover:underline"
-		>
-			Jump to timestamp
-		</button>
+
 	</div>
 </div>

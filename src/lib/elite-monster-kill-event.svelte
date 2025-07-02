@@ -26,11 +26,4 @@
 			Bounty: {event.bounty} gold
 		</p>
 	{/if}
-	
-	<button 
-		onclick={jumpToTimestamp}
-		class="mt-2 text-xs text-orange-600 hover:text-orange-800 hover:underline"
-	>
-		Jump to timestamp
-	</button>
 </div>

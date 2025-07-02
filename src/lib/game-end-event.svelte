@@ -20,11 +20,5 @@
 	<p class="text-sm text-slate-800 mb-1">
 		Game completed - {event.result}
 	</p>
-	
-	<button 
-		onclick={jumpToTimestamp}
-		class="mt-2 text-xs text-slate-600 hover:text-slate-800 hover:underline"
-	>
-		Jump to timestamp
-	</button>
+
 </div>
